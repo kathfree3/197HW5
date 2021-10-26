@@ -1,9 +1,9 @@
 // local imports
 import { EDIT_INTRO } from '../actions'
 
-const defaultState = { image: '', description: '' }
+const defaultState = { imageURL: '', description: '' }
 
-const intro = (state = defaultState, action) => {
+const IntroReducer = (state = defaultState, action) => {
   const { type, imageURL, description } = action
 
   switch (type) {
@@ -14,4 +14,4 @@ const intro = (state = defaultState, action) => {
   }
 }
 
-export default intro
+export default IntroReducer

@@ -7,8 +7,6 @@ import PostList from './PostList'
 
 const App = () => (
   <div>
-    <h1>Your react app!</h1>
-    <Introduction />
     <PostInput />
     <PostList />
   </div>

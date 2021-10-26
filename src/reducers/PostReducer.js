@@ -1,4 +1,4 @@
-import { ADD_POST } from '../actions'
+import { ADD_POST, EDIT_POST, DELETE_POST } from '../actions'
 
 const defaultState = []
 
@@ -12,6 +12,10 @@ const PostReducer = (state = defaultState, action) => {
       return [...state, {
         id, title, image, description,
       }]
+    case EDIT_POST:
+      return state
+    case DELETE_POST:
+      return state
     default:
       return state
   }

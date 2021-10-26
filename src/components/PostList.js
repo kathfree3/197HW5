@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
-const PostList = ({ posts }) => (
+// local imports
+import Post from '../StyledComponents/Post'
+
+const PostList = ({ posts, dispatchEditPost }) => (
   <>
-    {posts.map(p => (
-      <div>
-        {p.title}
-        {p.image}
-        {p.description}
-      </div>
+    {posts.map(({
+      id, title, image, description,
+    }) => (
+      <Post id={id} title={title} image={image} description={description} />
     ))}
   </>
 )

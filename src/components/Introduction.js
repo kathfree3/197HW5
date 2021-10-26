@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 
 // local imports
 import { editIntro } from '../actions'
+import EditIntro from './EditIntro'
 
 const Introduction = ({ imageURL, description, dispatchEditIntro }) => {
-  const [toggled, setToggled] = useState(false)
-  const [newImageURL, setNewImageURL] = useState(imageURL)
-  const [newDescription, setNewDescription] = useState(description)
+  const [editMode, setEditMode] = useState(false)
 
   return (
     <div>
@@ -18,15 +17,8 @@ const Introduction = ({ imageURL, description, dispatchEditIntro }) => {
       <p>
         {description}
       </p>
-      <button type="button" onClick={() => setToggled(!toggled)}> Edit </button>
-      {toggled && (
-        <form>
-          <input value={newImageURL} type="text" onChange={e => setNewImageURL(e.target.value)} placeholder="Image Url" />
-          <input value={newDescription} type="text" onChange={e => setNewDescription(e.target.value)} placeholder="Description" />
-          <button type="submit" onClick={() => dispatchEditIntro({ imageURL: newImageURL, description: newDescription })}> Submit </button>
-          <button type="submit"> Cancel </button>
-        </form>
-      )}
+      <button type="button" onClick={() => setEditMode(!editMode)}> Edit </button>
+      {editMode && <EditIntro /> }
     </div>
   )
 }

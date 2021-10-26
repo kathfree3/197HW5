@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
-import intro from './intro'
-import PostReducer from './PostReducer'
+// import { imageURL, description } from './IntroReducer'
+import posts from './PostReducer'
 
 export default combineReducers({
-  PostReducer,
+  posts,
 })
