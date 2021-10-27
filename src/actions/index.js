@@ -4,7 +4,6 @@ export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const EDIT_INTRO = 'EDIT_INTRO'
-export const SET_TOGGLE = 'SET_TOGGLE'
 
 export const addPost = ({ title, image, description }) => ({
   type: ADD_POST,
@@ -32,14 +31,4 @@ export const deletePost = id => ({
 export const editIntro = intro => ({
   type: EDIT_INTRO,
   intro,
-})
-
-export const TOGGLE_STATUS = {
-  CREATE_TRUE: 'CREATE_TRUE',
-  CREATE_FALSE: 'CREATE_FALSE',
-}
-
-export const setToggle = status => ({
-  type: SET_TOGGLE,
-  status,
 })

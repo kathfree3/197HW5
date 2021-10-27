@@ -3,15 +3,13 @@ import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
-import { addPost, setToggle, TOGGLE_STATUS } from '../actions'
+import { addPost } from '../actions'
 import {
   SaveButton, CancelButton, Input, Label,
 } from '../StyledComponents/GlobalStyles'
 
-const { CREATE_TRUE: origStatus } = TOGGLE_STATUS
-
 // title, image, description
-const PostInput = ({ dispatchSetToggle, dispatchAddPost }) => {
+const PostInput = ({ setToggled, dispatchAddPost }) => {
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
   const [description, setDesription] = useState('')
@@ -26,10 +24,16 @@ const PostInput = ({ dispatchSetToggle, dispatchAddPost }) => {
       <Label htmlFor="description">Description:</Label>
       <Input name="description" onChange={e => setDesription(e.target.value)} placeholder="Enter Description..." />
       <div>
-        <SaveButton type="submit" onClick={() => dispatchAddPost({ title, image, description })}>
+        <SaveButton
+          type="submit"
+          onClick={() => {
+            dispatchAddPost({ title, image, description })
+            setToggled(false)
+          }}
+        >
           Save
         </SaveButton>
-        <CancelButton onClick={() => dispatchSetToggle(origStatus)}>
+        <CancelButton onClick={() => setToggled(false)}>
           Cancel
         </CancelButton>
       </div>
@@ -38,12 +42,7 @@ const PostInput = ({ dispatchSetToggle, dispatchAddPost }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  dispatchAddPost: ({ title, image, description }) => {
-    dispatch(addPost({ title, image, description }))
-    dispatch(setToggle(origStatus))
-  },
-  dispatchSetToggle: status => dispatch(setToggle(status)),
-
+  dispatchAddPost: ({ title, image, description }) => dispatch(addPost({ title, image, description })),
 })
 
 export default connect(null, mapDispatchToProps)(PostInput)

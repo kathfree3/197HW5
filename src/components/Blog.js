@@ -6,34 +6,24 @@ import s from 'styled-components'
 import { Button } from '../StyledComponents/GlobalStyles'
 import PostInput from './PostInput'
 import PostList from './PostList'
-import { setToggle, TOGGLE_STATUS } from '../actions'
 
-// const key = obj.key (x)
-const { CREATE_TRUE } = TOGGLE_STATUS
+const Blog = () => {
+  const [toggled, setToggled] = useState(true)
+  return (
+    <Container>
+      <h1>
+        Blog Posts
+        <AddPostButton type="button" onClick={() => setToggled(!toggled)}>
+          Add Post
+        </AddPostButton>
+      </h1>
+      {toggled && <PostInput setToggled={setToggled} />}
+      <PostList />
+    </Container>
+  )
+}
 
-const Blog = ({ status, dispatchSetToggle }) => (
-  <Container>
-    <h1>
-      Blog Posts
-      <AddPostButton type="button" onClick={() => dispatchSetToggle(status)}>
-        Add Post
-      </AddPostButton>
-    </h1>
-    {status === CREATE_TRUE && <PostInput />}
-    <PostList />
-  </Container>
-
-)
-
-const mapStateToProps = state => ({
-  status: state.status,
-})
-
-const mapDispatchToProps = dispatch => ({
-  dispatchSetToggle: status => dispatch(setToggle(status)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Blog)
+export default Blog
 
 const Container = s.div`
   margin: 1rem;
