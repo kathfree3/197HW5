@@ -3,41 +3,34 @@ import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
-import { editIntro } from '../actions'
 import EditIntro from './EditIntro'
-// styles imports
 import { EditButton } from '../StyledComponents/GlobalStyles'
 
-const Introduction = ({ imageURL, description, dispatchEditIntro }) => {
+const Introduction = ({ intro }) => {
   const [editMode, setEditMode] = useState(false)
-
+  const { introImageURL, introDescription } = intro
   return (
     <IntroContainer>
       <h1> Hey this is me</h1>
       <p>
-        {imageURL}
+        {introImageURL}
       </p>
       <p>
-        {description}
+        {introDescription}
       </p>
       <EditButton type="button" onClick={() => setEditMode(!editMode)}>
         Edit
       </EditButton>
-      {editMode && <EditIntro /> }
+      {editMode && <EditIntro intro={intro} setEditMode={setEditMode} />}
     </IntroContainer>
   )
 }
 
 const mapStateToProps = state => ({
-  imageURL: state.imageURL,
-  description: state.description,
+  intro: state.intro,
 })
 
-const mapDispatchToProps = dispatch => ({
-  dispatchEditIntro: ({ imageURL, description }) => dispatch(editIntro({ imageURL, description })),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Introduction)
+export default connect(mapStateToProps, null)(Introduction)
 
 const IntroContainer = s.div`
   margin: 1rem;

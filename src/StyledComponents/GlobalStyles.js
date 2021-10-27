@@ -22,3 +22,14 @@ export const CancelButton = s(Button)`
   background: blue;
   display: inline-block;
 `
+
+export const Input = s.input`
+  display: block;
+  padding: 10px;
+  border: solid 1px #dbdbdb;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+`
+export const Label = s.label`
+  margin: 0.25rem 0rem;
+`

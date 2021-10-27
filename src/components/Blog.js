@@ -1,29 +1,39 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
 import { Button } from '../StyledComponents/GlobalStyles'
 import PostInput from './PostInput'
 import PostList from './PostList'
+import { setToggle, TOGGLE_STATUS } from '../actions'
 
-const Blog = () => {
-  const [addPostMode, setAddPostMode] = useState(true)
-  return (
-    <Container>
-      <h1>
-        Blog Posts
-        <AddPostButton type="button" onClick={() => setAddPostMode(!addPostMode)}>
-          Add Post
-        </AddPostButton>
-      </h1>
-      {addPostMode && <PostInput />}
-      <PostList />
-    </Container>
+// const key = obj.key (x)
+const { CREATE_TRUE } = TOGGLE_STATUS
 
-  )
-}
+const Blog = ({ status, dispatchSetToggle }) => (
+  <Container>
+    <h1>
+      Blog Posts
+      <AddPostButton type="button" onClick={() => dispatchSetToggle(status)}>
+        Add Post
+      </AddPostButton>
+    </h1>
+    {status === CREATE_TRUE && <PostInput />}
+    <PostList />
+  </Container>
 
-export default Blog
+)
+
+const mapStateToProps = state => ({
+  status: state.status,
+})
+
+const mapDispatchToProps = dispatch => ({
+  dispatchSetToggle: status => dispatch(setToggle(status)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blog)
 
 const Container = s.div`
   margin: 1rem;
