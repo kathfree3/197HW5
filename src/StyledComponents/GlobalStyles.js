@@ -7,7 +7,7 @@ export const Button = s.button`
   border: solid 1px #dbdbdb;
   border-radius: 5px;
   color: white;
-  margin: 1rem;
+  margin-top: 0.5rem;
 `
 export const EditButton = s(Button)`
   background: #DB7093;
@@ -16,6 +16,7 @@ export const EditButton = s(Button)`
 export const SaveButton = s(Button)`
   background: green;
   display: inline-block;
+  margin-right: 1rem;
 `
 export const CancelButton = s(Button)`
   background: blue;

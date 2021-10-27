@@ -14,15 +14,21 @@ const PostInput = ({ dispatchAddPost }) => {
 
   return (
     <Form>
-      <Input onChange={e => setTitle(e.target.value)} placeholder="Enter title..." />
-      <Input onChange={e => setImage(e.target.value)} placeholder="Enter Image URL..." />
-      <Input onChange={e => setDesription(e.target.value)} placeholder="Enter Description..." />
-      <SaveButton type="submit" onClick={() => dispatchAddPost({ title, image, description })}>
-        Save
-      </SaveButton>
-      <CancelButton>
-        Cancel
-      </CancelButton>
+      <h2> New Post </h2>
+      <Label htmlFor="title">Title:</Label>
+      <Input name="title" onChange={e => setTitle(e.target.value)} placeholder="Enter title..." />
+      <Label htmlFor="image">Image URL:</Label>
+      <Input name="image" onChange={e => setImage(e.target.value)} placeholder="Enter Image URL..." />
+      <Label htmlFor="description">Description:</Label>
+      <Input name="description" onChange={e => setDesription(e.target.value)} placeholder="Enter Description..." />
+      <div>
+        <SaveButton type="submit" onClick={() => dispatchAddPost({ title, image, description })}>
+          Save
+        </SaveButton>
+        <CancelButton>
+          Cancel
+        </CancelButton>
+      </div>
     </Form>
   )
 }
@@ -35,18 +41,19 @@ export default connect(null, mapDispatchToProps)(PostInput)
 
 const Input = s.input`
   display: block;
-  padding: 10px 24px;
+  padding: 10px;
   border: solid 1px #dbdbdb;
   border-radius: 5px;
-  margin: 1rem;
+  margin-bottom: 1rem;
 `
-
-// container should have some diff based on if its a reply or new post
+const Label = s.label`
+  margin: 0.25rem 0rem;
+`
 const Form = s.div`
   display: flex;
   width: 20%;
   margin: auto;
   flex-direction: column;
-  align-items: center;
-  border: 1px;
+  border: 3px solid #f2f2f2;
+  padding: 1rem;
 `
