@@ -2,13 +2,12 @@ import React from 'react'
 
 // local imports
 import Introduction from './Introduction'
-import PostInput from './PostInput'
-import PostList from './PostList'
+import Blog from './Blog'
 
 const App = () => (
-  <div>
-    <PostInput />
-    <PostList />
-  </div>
+  <>
+    <Introduction />
+    <Blog />
+  </>
 )
 export default App

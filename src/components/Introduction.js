@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import s from 'styled-components'
 
 // local imports
 import { editIntro } from '../actions'
 import EditIntro from './EditIntro'
+// styles imports
+import { EditButton } from '../StyledComponents/GlobalStyles'
 
 const Introduction = ({ imageURL, description, dispatchEditIntro }) => {
   const [editMode, setEditMode] = useState(false)
 
   return (
-    <div>
+    <IntroContainer>
       <h1> Hey this is me</h1>
       <p>
         {imageURL}
@@ -17,9 +20,11 @@ const Introduction = ({ imageURL, description, dispatchEditIntro }) => {
       <p>
         {description}
       </p>
-      <button type="button" onClick={() => setEditMode(!editMode)}> Edit </button>
+      <EditButton type="button" onClick={() => setEditMode(!editMode)}>
+        Edit
+      </EditButton>
       {editMode && <EditIntro /> }
-    </div>
+    </IntroContainer>
   )
 }
 
@@ -33,3 +38,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Introduction)
+
+const IntroContainer = s.div`
+  margin: 1rem;
+  padding: 1rem;
+  display: block;
+  background: lightgray;
+`
