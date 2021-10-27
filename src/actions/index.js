@@ -1,4 +1,4 @@
-let counter = 0 // counter for post IDS
+let counter = 1 // counter for post IDS
 
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'

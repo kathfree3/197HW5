@@ -5,22 +5,24 @@ import { connect } from 'react-redux'
 import { editIntro } from '../actions'
 import {
   SaveButton, CancelButton, Input, Label,
-} from '../StyledComponents/GlobalStyles'
+} from '../GlobalStyles'
 
 const EditIntro = ({ intro, setEditMode, dispatchEditIntro }) => {
   const { introImageURL, introDescription } = intro
-  const [imageURL, setImageURL] = useState(introImageURL || '')
-  const [description, setDescription] = useState(introDescription || '')
+  const [newImage, setImage] = useState(introImageURL || '')
+  const [newDescr, setDescr] = useState(introDescription || '')
 
   return (
     <>
       <form>
-        <Input value={imageURL} type="text" onChange={e => setImageURL(e.target.value)} placeholder="Image Url" />
-        <Input value={description} type="text" onChange={e => setDescription(e.target.value)} placeholder="Description" />
+        <Label htmlFor="image">Image URL:</Label>
+        <Input name="image" value={newImage} type="text" onChange={e => setImage(e.target.value)} placeholder="Enter Image URL..." />
+        <Label htmlFor="descrip">Description:</Label>
+        <Input name="descrip" value={newDescr} type="text" onChange={e => setDescr(e.target.value)} placeholder="Enter Description..." />
       </form>
       <SaveButton
         onClick={() => {
-          dispatchEditIntro({ introImageURL: imageURL, introDescription: description })
+          dispatchEditIntro({ introImageURL: newImage, introDescription: newDescr })
           setEditMode(false)
         }}
       >

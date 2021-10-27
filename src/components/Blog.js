@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
-import { Button } from '../StyledComponents/GlobalStyles'
-import PostInput from './PostInput'
+import { Button } from '../GlobalStyles'
+import PostForm from './PostForm'
 import PostList from './PostList'
 
 const Blog = () => {
@@ -17,7 +17,12 @@ const Blog = () => {
           Add Post
         </AddPostButton>
       </h1>
-      {toggled && <PostInput setToggled={setToggled} />}
+      {toggled
+      && (
+      <div style={{ border: '3px solid #f2f2f2', width: '30%', margin: 'auto' }}>
+        <PostForm setToggled={setToggled} />
+      </div>
+      )}
       <PostList />
     </Container>
   )
@@ -36,7 +41,6 @@ const Container = s.div`
     width: 100%;
     align-items: center;
   }
-  
 `
 
 const AddPostButton = s(Button)`

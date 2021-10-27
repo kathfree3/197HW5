@@ -10,7 +10,7 @@ const PostList = ({ posts, dispatchEditPost }) => (
     {posts.map(({
       id, title, image, description,
     }) => (
-      <Post id={id} title={title} image={image} description={description} />
+      <Post id={id} title={title} image={image} description={description} key={id} />
     ))}
   </Container>
 )

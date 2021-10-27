@@ -3,15 +3,12 @@ import React, { useState } from 'react'
 import s from 'styled-components'
 
 // local imports
-import { editPost } from '../actions'
-
-// local stle imports
-import {
-  Button, EditButton, SaveButton, CancelButton,
-} from '../StyledComponents/GlobalStyles'
+import PostForm from './PostForm'
+import { EditButton } from '../GlobalStyles'
 
 const PostContainer = s.div`
-  margin: 1rem;
+  margin: 1rem 0rem;  
+  margin-right: 1rem;
   padding: 1rem;
   display: block;
   width: 25%;
@@ -21,9 +18,6 @@ const PostContainer = s.div`
     font-size: 1.5rem
   }
 `
-const DeleteButton = s(Button)`
-  background: red;
-`
 
 const Post = ({
   id, title, image, description,
@@ -32,24 +26,23 @@ const Post = ({
 
   return (
     <PostContainer>
-      <h1>
-        Post #
-        {id}
-        :
-        {title}
-      </h1>
-      {image}
-      {description}
-      <EditButton type="button" onClick={() => setEditMode(!editMode)}>
-        Edit
-      </EditButton>
-      {editMode && (
-      <>
-        <SaveButton />
-        <CancelButton />
-        <DeleteButton />
-      </>
+      {!editMode && (
+        <>
+          <h1>
+            Post #
+            {id}
+            :
+            {title}
+          </h1>
+          {image}
+          <br />
+          {description}
+          <EditButton type="button" onClick={() => setEditMode(!editMode)}>
+            Edit
+          </EditButton>
+        </>
       )}
+      {editMode && <PostForm setToggled={setEditMode} id={id} title={title} image={image} description={description} /> }
     </PostContainer>
   )
 }

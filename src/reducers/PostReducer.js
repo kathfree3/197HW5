@@ -13,9 +13,16 @@ const PostReducer = (state = defaultState, action) => {
         id, title, image, description,
       }]
     case EDIT_POST:
-      return state
+      return state.map(post => {
+        if (post.id === id) {
+          return {
+            ...post, title, image, description,
+          }
+        }
+        return post
+      })
     case DELETE_POST:
-      return state
+      return state.filter(post => post.id !== id)
     default:
       return state
   }

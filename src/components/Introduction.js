@@ -4,7 +4,7 @@ import s from 'styled-components'
 
 // local imports
 import EditIntro from './EditIntro'
-import { EditButton } from '../StyledComponents/GlobalStyles'
+import { EditButton } from '../GlobalStyles'
 
 const Introduction = ({ intro }) => {
   const [editMode, setEditMode] = useState(false)
@@ -12,15 +12,20 @@ const Introduction = ({ intro }) => {
   return (
     <IntroContainer>
       <h1> Hey this is me</h1>
-      <p>
-        {introImageURL}
-      </p>
-      <p>
-        {introDescription}
-      </p>
-      <EditButton type="button" onClick={() => setEditMode(!editMode)}>
-        Edit
-      </EditButton>
+      {!editMode
+      && (
+      <>
+        <p>
+          {introImageURL}
+        </p>
+        <p>
+          {introDescription}
+        </p>
+        <EditButton type="button" onClick={() => setEditMode(!editMode)}>
+          Edit
+        </EditButton>
+      </>
+      )}
       {editMode && <EditIntro intro={intro} setEditMode={setEditMode} />}
     </IntroContainer>
   )
