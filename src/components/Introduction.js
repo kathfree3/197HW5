@@ -4,23 +4,23 @@ import s from 'styled-components'
 
 // local imports
 import EditIntro from './EditIntro'
-import { EditButton } from '../GlobalStyles'
+import { EditButton, H, Image } from '../GlobalStyles'
 
 const Introduction = ({ intro }) => {
   const [editMode, setEditMode] = useState(false)
   const { introImageURL, introDescription } = intro
   return (
     <IntroContainer>
-      <h1> Hey this is me</h1>
+      <H>
+        Hey this is me
+        <EditButton className="edit" type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
+      </H>
       {!editMode ? (
         <>
-          <p>
-            {introImageURL}
-          </p>
+          <Image src={introImageURL} alt="profilepic" />
           <p>
             {introDescription}
           </p>
-          <EditButton type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
         </>
       ) : (<EditIntro intro={intro} setEditMode={setEditMode} />)}
     </IntroContainer>
@@ -36,6 +36,10 @@ export default connect(mapStateToProps, null)(Introduction)
 const IntroContainer = s.div`
   margin: 1rem;
   padding: 1rem;
-  display: block;
   background: lightgray;
+  display: flex;
+  flex-direction: column;
+  .edit {
+    margin-left: auto;
+  }
 `

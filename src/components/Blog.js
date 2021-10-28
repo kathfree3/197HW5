@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import s from 'styled-components'
 
 // local imports
-import { Button } from '../GlobalStyles'
+import { Button, H } from '../GlobalStyles'
 import PostForm from './PostForm'
 import PostList from './PostList'
 
@@ -10,10 +10,10 @@ const Blog = () => {
   const [toggled, setToggled] = useState(true)
   return (
     <Container>
-      <h1>
+      <H>
         Blog Posts
         <AddButton onClick={() => setToggled(!toggled)}> Add Post </AddButton>
-      </h1>
+      </H>
       {toggled && (
       <Bordered>
         <h2> New Post </h2>
@@ -39,6 +39,7 @@ const Container = s.div`
     align-items: center;
   }
 `
+
 const Bordered = s.div`
   border: 3px solid #f2f2f2;
   width: 30%;

@@ -29,6 +29,7 @@ export const Input = s.input`
   border: solid 1px #dbdbdb;
   border-radius: 5px;
   margin-bottom: 1rem;
+  margin-right: 1rem;
 `
 export const Label = s.label`
   margin: 0.25rem 0rem;
@@ -38,4 +39,14 @@ export const Form = s.div`
   margin: auto;
   flex-direction: column;
   padding: 1rem;
+`
+
+export const H = s.h1`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+`
+export const Image = s.img`
+  max-width: 600px;
 `
