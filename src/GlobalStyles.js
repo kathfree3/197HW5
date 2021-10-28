@@ -48,5 +48,5 @@ export const H = s.h1`
   align-items: center;
 `
 export const Image = s.img`
-  max-width: 600px;
+  max-width: 400px;
 `

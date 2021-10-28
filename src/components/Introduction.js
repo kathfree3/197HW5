@@ -16,12 +16,10 @@ const Introduction = ({ intro }) => {
         <EditButton className="edit" type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
       </H>
       {!editMode ? (
-        <>
+        <Content>
           <Image src={introImageURL} alt="profilepic" />
-          <p>
-            {introDescription}
-          </p>
-        </>
+          {introDescription}
+        </Content>
       ) : (<EditIntro intro={intro} setEditMode={setEditMode} />)}
     </IntroContainer>
   )
@@ -35,11 +33,16 @@ export default connect(mapStateToProps, null)(Introduction)
 
 const IntroContainer = s.div`
   margin: 1rem;
-  padding: 1rem;
+  padding: 1rem; 
   background: lightgray;
   display: flex;
   flex-direction: column;
   .edit {
     margin-left: auto;
   }
+`
+const Content = s.div`
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
 `

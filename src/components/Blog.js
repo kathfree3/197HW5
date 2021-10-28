@@ -7,7 +7,7 @@ import PostForm from './PostForm'
 import PostList from './PostList'
 
 const Blog = () => {
-  const [toggled, setToggled] = useState(true)
+  const [toggled, setToggled] = useState(false)
   return (
     <Container>
       <H>

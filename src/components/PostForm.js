@@ -37,12 +37,12 @@ const PostForm = ({
   }
   return (
     <Form>
-      <Label htmlFor="title">Title:</Label>
-      <Input name="title" value={newTitle} onChange={e => setTitle(e.target.value)} placeholder="Enter title..." />
-      <Label htmlFor="image">Image URL:</Label>
-      <Input name="image" value={newImage} onChange={e => setImage(e.target.value)} placeholder="Enter Image URL..." />
-      <Label htmlFor="description">Description:</Label>
-      <Input name="description" value={newDesc} onChange={e => setDesc(e.target.value)} placeholder="Enter Description..." />
+      <Label htmlFor="title">Title</Label>
+      <Input name="title" value={newTitle} onChange={e => setTitle(e.target.value)} placeholder="Enter title" />
+      <Label htmlFor="image">Image URL</Label>
+      <Input name="image" value={newImage} onChange={e => setImage(e.target.value)} placeholder="Enter image url" />
+      <Label htmlFor="description">Description</Label>
+      <Input name="description" value={newDesc} onChange={e => setDesc(e.target.value)} placeholder="Enter description" />
       <div>
         <SaveButton type="submit" onClick={() => clickSave()}> Save </SaveButton>
         <CancelButton onClick={() => setToggled(false)}> Cancel </CancelButton>
