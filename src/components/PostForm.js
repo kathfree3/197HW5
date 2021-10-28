@@ -5,17 +5,36 @@ import s from 'styled-components'
 // local imports
 import { addPost, editPost, deletePost } from '../actions'
 import {
-  Button, SaveButton, CancelButton, Input, Label,
+  Button, SaveButton, CancelButton, Input, Label, Form,
 } from '../GlobalStyles'
 
 // title, image, description
 const PostForm = ({
-  setToggled, id, title, image, description, dispatchEdit, dispatchAdd, dispatchDelete,
+  setToggled, data, dispatchAdd, dispatchEdit, dispatchDelete,
 }) => {
+  const {
+    id, title, image, description,
+  } = data || 0
   const [newTitle, setTitle] = useState(title || '')
   const [newImage, setImage] = useState(image || '')
   const [newDesc, setDesc] = useState(description || '')
 
+  const clickSave = () => {
+    const newData = {
+      id, title: newTitle, image: newImage, description: newDesc,
+    }
+    if (id) {
+      dispatchEdit(newData)
+    } else { // if id is 0, make the new post
+      dispatchAdd(newData)
+    }
+    setToggled(false)
+  }
+
+  const clickDelete = () => {
+    dispatchDelete(id)
+    setToggled(false)
+  }
   return (
     <Form>
       <Label htmlFor="title">Title:</Label>
@@ -25,56 +44,21 @@ const PostForm = ({
       <Label htmlFor="description">Description:</Label>
       <Input name="description" value={newDesc} onChange={e => setDesc(e.target.value)} placeholder="Enter Description..." />
       <div>
-        <SaveButton
-          type="submit"
-          onClick={() => {
-            if (id) {
-              dispatchEdit({
-                id, title: newTitle, image: newImage, description: newDesc,
-              })
-            } else {
-              dispatchAdd({ title: newTitle, image: newImage, description: newDesc })
-            }
-            setToggled(false)
-          }}
-        >
-          Save
-        </SaveButton>
-        <CancelButton onClick={() => setToggled(false)}>
-          Cancel
-        </CancelButton>
-        {id && (
-        <DeleteButton onClick={() => {
-          dispatchDelete(id)
-          setToggled(false)
-        }}
-        >
-          Delete
-        </DeleteButton>
-        ) }
+        <SaveButton type="submit" onClick={() => clickSave()}> Save </SaveButton>
+        <CancelButton onClick={() => setToggled(false)}> Cancel </CancelButton>
+        {id && <DeleteButton onClick={() => clickDelete()}> Delete </DeleteButton>}
       </div>
     </Form>
   )
 }
 
 const mapDispatchToProps = dispatch => ({
-  dispatchAdd: ({ title, image, description }) => dispatch(addPost({ title, image, description })),
-  dispatchEdit: ({
-    id, title, image, description,
-  }) => dispatch(editPost({
-    id, title, image, description,
-  })),
+  dispatchAdd: data => dispatch(addPost(data)),
+  dispatchEdit: data => dispatch(editPost(data)),
   dispatchDelete: id => dispatch(deletePost(id)),
 })
 
 export default connect(null, mapDispatchToProps)(PostForm)
-
-const Form = s.div`
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  padding: 1rem;
-`
 
 const DeleteButton = s(Button)`
   background: red;

@@ -6,6 +6,35 @@ import s from 'styled-components'
 import PostForm from './PostForm'
 import { EditButton } from '../GlobalStyles'
 
+const Post = ({
+  id, title, image, description,
+}) => {
+  const [editMode, setEditMode] = useState(false)
+  const data = {
+    id, title, image, description,
+  }
+  return (
+    <PostContainer>
+      {!editMode ? (
+        <>
+          <h1>
+            Post #
+            {id}
+            :
+            {title}
+          </h1>
+          {image}
+          <br />
+          {description}
+          <EditButton type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
+        </>
+      ) : (<PostForm setToggled={setEditMode} data={data} />)}
+    </PostContainer>
+  )
+}
+
+export default Post
+
 const PostContainer = s.div`
   margin: 1rem 0rem;  
   margin-right: 1rem;
@@ -18,33 +47,3 @@ const PostContainer = s.div`
     font-size: 1.5rem
   }
 `
-
-const Post = ({
-  id, title, image, description,
-}) => {
-  const [editMode, setEditMode] = useState(false)
-
-  return (
-    <PostContainer>
-      {!editMode && (
-        <>
-          <h1>
-            Post #
-            {id}
-            :
-            {title}
-          </h1>
-          {image}
-          <br />
-          {description}
-          <EditButton type="button" onClick={() => setEditMode(!editMode)}>
-            Edit
-          </EditButton>
-        </>
-      )}
-      {editMode && <PostForm setToggled={setEditMode} id={id} title={title} image={image} description={description} /> }
-    </PostContainer>
-  )
-}
-
-export default Post

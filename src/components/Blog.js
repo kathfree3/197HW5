@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
@@ -13,15 +12,13 @@ const Blog = () => {
     <Container>
       <h1>
         Blog Posts
-        <AddPostButton type="button" onClick={() => setToggled(!toggled)}>
-          Add Post
-        </AddPostButton>
+        <AddButton onClick={() => setToggled(!toggled)}> Add Post </AddButton>
       </h1>
-      {toggled
-      && (
-      <div style={{ border: '3px solid #f2f2f2', width: '30%', margin: 'auto' }}>
+      {toggled && (
+      <Bordered>
+        <h2> New Post </h2>
         <PostForm setToggled={setToggled} />
-      </div>
+      </Bordered>
       )}
       <PostList />
     </Container>
@@ -42,8 +39,16 @@ const Container = s.div`
     align-items: center;
   }
 `
+const Bordered = s.div`
+  border: 3px solid #f2f2f2;
+  width: 30%;
+  margin: auto;
+  h2 {
+    margin: 1rem;
+  }
+`
 
-const AddPostButton = s(Button)`
+const AddButton = s(Button)`
   background: blue;
   margin-left: auto;
 `

@@ -12,21 +12,17 @@ const Introduction = ({ intro }) => {
   return (
     <IntroContainer>
       <h1> Hey this is me</h1>
-      {!editMode
-      && (
-      <>
-        <p>
-          {introImageURL}
-        </p>
-        <p>
-          {introDescription}
-        </p>
-        <EditButton type="button" onClick={() => setEditMode(!editMode)}>
-          Edit
-        </EditButton>
-      </>
-      )}
-      {editMode && <EditIntro intro={intro} setEditMode={setEditMode} />}
+      {!editMode ? (
+        <>
+          <p>
+            {introImageURL}
+          </p>
+          <p>
+            {introDescription}
+          </p>
+          <EditButton type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
+        </>
+      ) : (<EditIntro intro={intro} setEditMode={setEditMode} />)}
     </IntroContainer>
   )
 }

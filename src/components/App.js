@@ -10,4 +10,5 @@ const App = () => (
     <Blog />
   </>
 )
+
 export default App

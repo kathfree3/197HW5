@@ -33,3 +33,9 @@ export const Input = s.input`
 export const Label = s.label`
   margin: 0.25rem 0rem;
 `
+export const Form = s.div`
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  padding: 1rem;
+`
