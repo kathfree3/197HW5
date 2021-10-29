@@ -10,16 +10,16 @@ export const Button = s.button`
   margin-top: 0.5rem;
 `
 export const EditButton = s(Button)`
-  background: #DB7093;
+  background: #d14775;
 `
 
 export const SaveButton = s(Button)`
-  background: green;
+  background: #00cc66;
   display: inline-block;
   margin-right: 1rem;
 `
 export const CancelButton = s(Button)`
-  background: blue;
+  background: #0000cc;
   display: inline-block;
 `
 
@@ -39,6 +39,7 @@ export const Form = s.div`
   margin: auto;
   flex-direction: column;
   padding: 1rem;
+  width: 100%;
 `
 
 export const H = s.h1`

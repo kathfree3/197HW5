@@ -50,6 +50,6 @@ const Bordered = s.div`
 `
 
 const AddButton = s(Button)`
-  background: blue;
+  background: #66b3ff;
   margin-left: auto;
 `

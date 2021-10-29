@@ -18,7 +18,7 @@ const EditIntro = ({ intro, setEditMode, dispatchEditIntro }) => {
   }
 
   return (
-    <Form style={{ width: '100%' }}>
+    <Form>
       <Label htmlFor="image">Image URL:</Label>
       <Input name="image" value={newImage} type="text" onChange={e => setImage(e.target.value)} placeholder="Enter Image URL..." />
       <Label htmlFor="descrip">Description:</Label>

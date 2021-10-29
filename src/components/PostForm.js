@@ -61,5 +61,5 @@ const mapDispatchToProps = dispatch => ({
 export default connect(null, mapDispatchToProps)(PostForm)
 
 const DeleteButton = s(Button)`
-  background: red;
+  background: #b30000;
 `

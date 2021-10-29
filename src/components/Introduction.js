@@ -7,7 +7,7 @@ import EditIntro from './EditIntro'
 import { EditButton, H, Image } from '../GlobalStyles'
 
 const Introduction = ({ intro }) => {
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(true)
   const { introImageURL, introDescription } = intro
   return (
     <IntroContainer>
