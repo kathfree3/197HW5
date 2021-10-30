@@ -8,17 +8,20 @@ import {
   Button, SaveButton, CancelButton, Input, Label, Form,
 } from '../GlobalStyles'
 
-// title, image, description
 const PostForm = ({
   setToggled, data, dispatchAdd, dispatchEdit, dispatchDelete,
 }) => {
+  // data either exists or doesn't
   const {
     id, title, image, description,
   } = data || 0
+
+  // default values or empty if data didn't exist
   const [newTitle, setTitle] = useState(title || '')
   const [newImage, setImage] = useState(image || '')
   const [newDesc, setDesc] = useState(description || '')
 
+  // edit or add post depending on which mode we in
   const clickSave = () => {
     const newData = {
       id, title: newTitle, image: newImage, description: newDesc,
@@ -31,6 +34,7 @@ const PostForm = ({
     setToggled(false)
   }
 
+  // delete post & untoggle if button clicked
   const clickDelete = () => {
     dispatchDelete(id)
     setToggled(false)

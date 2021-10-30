@@ -9,25 +9,25 @@ import PostList from './PostList'
 const Blog = () => {
   const [toggled, setToggled] = useState(false)
   return (
-    <Container>
+    <BlogWrapper>
       <H>
         Blog Posts
         <AddButton onClick={() => setToggled(!toggled)}> Add Post </AddButton>
       </H>
       {toggled && (
-      <Bordered>
+      <NewPost>
         <h2> New Post </h2>
         <PostForm setToggled={setToggled} />
-      </Bordered>
+      </NewPost>
       )}
       <PostList />
-    </Container>
+    </BlogWrapper>
   )
 }
 
 export default Blog
 
-const Container = s.div`
+const BlogWrapper = s.div`
   margin: 1rem;
   padding: 1rem;
   display: flex;
@@ -40,7 +40,7 @@ const Container = s.div`
   }
 `
 
-const Bordered = s.div`
+const NewPost = s.div`
   border: 3px solid #f2f2f2;
   width: 30%;
   margin: auto;

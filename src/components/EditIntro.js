@@ -31,6 +31,7 @@ const EditIntro = ({ intro, setEditMode, dispatchEditIntro }) => {
   )
 }
 
+// intro is {introImageURL, introDescription}
 const mapDispatchToProps = dispatch => ({
   dispatchEditIntro: intro => dispatch(editIntro(intro)),
 })

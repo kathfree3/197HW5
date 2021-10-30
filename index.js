@@ -8,8 +8,8 @@ import App from './src/components/App'
 import rootReducer from './src/reducers'
 
 // create store
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-// const store = createStore(rootReducer)
+// const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer)
 
 ReactDOM.render(
   <Provider store={store}>

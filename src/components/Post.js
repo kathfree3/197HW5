@@ -10,32 +10,33 @@ const Post = ({
   id, title, image, description,
 }) => {
   const [editMode, setEditMode] = useState(false)
-  const data = {
-    id, title, image, description,
-  }
+
   return (
-    <PostContainer>
+    <PostWrapper>
       {!editMode ? (
         <>
           <Image src={image} alt="Eee" />
           <h1>
-            Post #
-            {id}
-            :
-            {title}
+            {`Post #${id}: ${title}`}
           </h1>
-          <br />
           {description}
-          <EditButton type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
+          <EditButton className="edit" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
         </>
-      ) : (<PostForm setToggled={setEditMode} data={data} />)}
-    </PostContainer>
+      ) : (
+        <PostForm
+          setToggled={setEditMode}
+          data={{
+            id, title, image, description,
+          }}
+        />
+      )}
+    </PostWrapper>
   )
 }
 
 export default Post
 
-const PostContainer = s.div`
+const PostWrapper = s.div`
   margin: 1rem 0rem;  
   margin-right: 1rem;
   padding: 1rem;
@@ -46,5 +47,8 @@ const PostContainer = s.div`
   border-radius: 3px;
   h1 {
     font-size: 1.5rem
+  }
+  .edit {
+    margin-right: auto;
   }
 `
