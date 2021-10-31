@@ -1,5 +1,19 @@
 import s from 'styled-components'
 
+export const SectionWrapper = s.div`
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  h1 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+  }
+`
+
+/* *****Button styles***** */
 export const Button = s.button`
   display: block;
   font-size: 1rem;
@@ -23,6 +37,15 @@ export const CancelButton = s(Button)`
   display: inline-block;
 `
 
+/* *****Form styles***** */
+export const Form = s.div`
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+`
+
 export const Input = s.input`
   display: block;
   padding: 10px;
@@ -34,20 +57,7 @@ export const Input = s.input`
 export const Label = s.label`
   margin: 0.25rem 0rem;
 `
-export const Form = s.div`
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  padding: 1rem;
-  width: 100%;
-`
 
-export const H = s.h1`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  align-items: center;
-`
 export const Image = s.img`
   max-width: 400px;
 `

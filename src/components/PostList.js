@@ -1,3 +1,4 @@
+// package imports
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import s from 'styled-components'
@@ -5,7 +6,7 @@ import s from 'styled-components'
 // local imports
 import Post from './Post'
 
-const PostList = ({ posts, dispatchEditPost }) => (
+const PostList = ({ posts }) => (
   <Container>
     {posts.map(({
       id, title, image, description,
@@ -21,6 +22,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, null)(PostList)
 
+// styled components
 const Container = s.div`
   display: flex;
   flex-direction: row;

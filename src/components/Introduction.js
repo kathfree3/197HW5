@@ -1,27 +1,31 @@
+// package imports
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import s from 'styled-components'
 
 // local imports
 import EditIntro from './EditIntro'
-import { EditButton, H, Image } from '../GlobalStyles'
+import {
+  EditButton, Image, SectionWrapper,
+} from '../GlobalStyles'
 
 const Introduction = ({ intro }) => {
-  const [editMode, setEditMode] = useState(true)
-  const { introImageURL, introDescription } = intro
+  const [editMode, setEditMode] = useState(false)
+  const { introImageURL, introDescription } = intro // destructure elem
+
   return (
-    <IntroContainer>
-      <H>
-        Hey this is me
-        <EditButton className="edit" type="button" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
-      </H>
-      {!editMode ? (
+    <IntroWrapper>
+      <h1>
+        Welcome to my blog!!
+        <EditButton className="edit" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
+      </h1>
+      {editMode ? (<EditIntro intro={intro} setEditMode={setEditMode} />) : (
         <Content>
-          <Image src={introImageURL} alt="profilepic" />
+          <Image src={introImageURL} alt="profile pic" />
           {introDescription}
         </Content>
-      ) : (<EditIntro intro={intro} setEditMode={setEditMode} />)}
-    </IntroContainer>
+      ) }
+    </IntroWrapper>
   )
 }
 
@@ -31,12 +35,9 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, null)(Introduction)
 
-const IntroContainer = s.div`
-  margin: 1rem;
-  padding: 1rem; 
+// styled components
+const IntroWrapper = s(SectionWrapper)`
   background: lightgray;
-  display: flex;
-  flex-direction: column;
   .edit {
     margin-left: auto;
   }

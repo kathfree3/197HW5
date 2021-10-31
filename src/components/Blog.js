@@ -1,45 +1,34 @@
+// package imports
 import React, { useState } from 'react'
 import s from 'styled-components'
 
 // local imports
-import { Button, H } from '../GlobalStyles'
+import { Button, SectionWrapper } from '../GlobalStyles'
 import PostForm from './PostForm'
 import PostList from './PostList'
 
 const Blog = () => {
-  const [toggled, setToggled] = useState(false)
+  const [editMode, setEditMode] = useState(false)
   return (
-    <BlogWrapper>
-      <H>
-        Blog Posts
-        <AddButton onClick={() => setToggled(!toggled)}> Add Post </AddButton>
-      </H>
-      {toggled && (
+    <SectionWrapper>
+      <h1>
+        My Posts
+        <AddButton onClick={() => setEditMode(!editMode)}> Add Post </AddButton>
+      </h1>
+      {editMode && (
       <NewPost>
         <h2> New Post </h2>
-        <PostForm setToggled={setToggled} />
+        <PostForm setEditMode={setEditMode} />
       </NewPost>
       )}
       <PostList />
-    </BlogWrapper>
+    </SectionWrapper>
   )
 }
 
 export default Blog
 
-const BlogWrapper = s.div`
-  margin: 1rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  h1 {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-  }
-`
-
+// styled components
 const NewPost = s.div`
   border: 3px solid #f2f2f2;
   width: 30%;

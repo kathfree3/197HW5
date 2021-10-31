@@ -1,3 +1,4 @@
+// local imports
 import { ADD_POST, EDIT_POST, DELETE_POST } from '../actions'
 
 const defaultState = []

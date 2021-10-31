@@ -1,3 +1,4 @@
+// package imports
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import s from 'styled-components'
@@ -9,7 +10,7 @@ import {
 } from '../GlobalStyles'
 
 const PostForm = ({
-  setToggled, data, dispatchAdd, dispatchEdit, dispatchDelete,
+  setEditMode, data, dispatchAdd, dispatchEdit, dispatchDelete,
 }) => {
   // data either exists or doesn't
   const {
@@ -21,24 +22,21 @@ const PostForm = ({
   const [newImage, setImage] = useState(image || '')
   const [newDesc, setDesc] = useState(description || '')
 
-  // edit or add post depending on which mode we in
   const clickSave = () => {
     const newData = {
       id, title: newTitle, image: newImage, description: newDesc,
     }
-    if (id) {
-      dispatchEdit(newData)
-    } else { // if id is 0, make the new post
-      dispatchAdd(newData)
-    }
-    setToggled(false)
+    setEditMode(false)
+    // edit or add post depending on which mode we in
+    return id ? dispatchEdit(newData) : dispatchAdd(newData)
   }
 
-  // delete post & untoggle if button clicked
   const clickDelete = () => {
+    // delete post & untoggle if button clicked
     dispatchDelete(id)
-    setToggled(false)
+    setEditMode(false)
   }
+
   return (
     <Form>
       <Label htmlFor="title">Title</Label>
@@ -49,7 +47,7 @@ const PostForm = ({
       <Input name="description" value={newDesc} onChange={e => setDesc(e.target.value)} placeholder="Enter description" />
       <div>
         <SaveButton type="submit" onClick={() => clickSave()}> Save </SaveButton>
-        <CancelButton onClick={() => setToggled(false)}> Cancel </CancelButton>
+        <CancelButton onClick={() => setEditMode(false)}> Cancel </CancelButton>
         {id && <DeleteButton onClick={() => clickDelete()}> Delete </DeleteButton>}
       </div>
     </Form>
@@ -64,6 +62,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(PostForm)
 
+// styled components
 const DeleteButton = s(Button)`
   background: #b30000;
 `

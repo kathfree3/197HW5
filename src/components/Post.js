@@ -9,26 +9,27 @@ import { EditButton, Image } from '../GlobalStyles'
 const Post = ({
   id, title, image, description,
 }) => {
+  // store edit mode with useState
   const [editMode, setEditMode] = useState(false)
 
   return (
     <PostWrapper>
-      {!editMode ? (
+      {editMode ? (
+        <PostForm
+          setEditMode={setEditMode}
+          data={{
+            id, title, image, description,
+          }}
+        />
+      ) : (
         <>
-          <Image src={image} alt="Eee" />
+          <Image src={image} alt="post image" />
           <h1>
             {`Post #${id}: ${title}`}
           </h1>
           {description}
           <EditButton className="edit" onClick={() => setEditMode(!editMode)}> Edit </EditButton>
         </>
-      ) : (
-        <PostForm
-          setToggled={setEditMode}
-          data={{
-            id, title, image, description,
-          }}
-        />
       )}
     </PostWrapper>
   )
@@ -36,6 +37,7 @@ const Post = ({
 
 export default Post
 
+// styled components
 const PostWrapper = s.div`
   margin: 1rem 0rem;  
   margin-right: 1rem;
